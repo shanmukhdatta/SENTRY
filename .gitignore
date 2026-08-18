@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Generated QR code files
+generated_qr/*.png
+
+# IDEs & System
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

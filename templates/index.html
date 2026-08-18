@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeggieVerify - Produce QR Code Generator</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <span class="logo-icon">🥬</span>
+                <h1 class="app-title">VeggieVerify</h1>
+            </div>
+            <p class="app-tagline">Create a digital identity for your fresh produce.</p>
+            <p class="app-subtitle">Enter the details, generate a QR code, and make your produce instantly identifiable.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Card -->
+            <div class="card form-card" id="formCard">
+                <form id="qrForm" class="qr-form" novalidate>
+                    <div class="form-group">
+                        <label for="product" class="form-label">
+                            <i class="fas fa-carrot"></i>
+                            Vegetable / Fruit Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="product" 
+                            name="product" 
+                            class="form-input" 
+                            placeholder="e.g. Apple"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age_days" class="form-label">
+                            <i class="fas fa-calendar-alt"></i>
+                            Age / Days Since Harvest
+                        </label>
+                        <input 
+                            type="number" 
+                            id="age_days" 
+                            name="age_days" 
+                            class="form-input" 
+                            placeholder="e.g. 45"
+                            min="0"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="condition" class="form-label">
+                            <i class="fas fa-heartbeat"></i>
+                            Condition
+                        </label>
+                        <select id="condition" name="condition" class="form-input form-select" required>
+                            <option value="" disabled selected>Select Condition</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Average">Average</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origin" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Origin / Farm
+                        </label>
+                        <input 
+                            type="text" 
+                            id="origin" 
+                            name="origin" 
+                            class="form-input" 
+                            placeholder="e.g. Punjab Organic Farm"
+                            required
+                        >
+                    </div>
+
+                    <div class="error-message" id="errorMessage"></div>
+
+                    <button type="submit" class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-qrcode"></i>
+                        <span class="btn-text">Generate QR Code</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Result Card (Initially Hidden) -->
+            <div class="card result-card" id="resultCard" style="display: none;">
+                <div class="success-header">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2 class="success-title">QR Code Ready!</h2>
+                    <p class="success-message">Scan with any smartphone camera to view produce details.</p>
+                </div>
+
+                <div class="qr-code-container">
+                    <img id="qrCodeImage" class="qr-code-image" src="" alt="Vegetable Details QR Code">
+                </div>
+
+                <div class="product-details">
+                    <h3 class="details-title">Summary Information</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Produce Name:</span>
+                        <span class="detail-value" id="detailProduct">--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Age / Harvested:</span>
+                        <span class="detail-value" id="detailAge">--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Condition:</span>
+                        <span class="detail-value" id="detailCondition">--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Origin / Farm:</span>
+                        <span class="detail-value" id="detailOrigin">--</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        Download PNG
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <i class="fas fa-redo"></i>
+                        Generate Another
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; VeggieVerify Produce Identifier &bull; Fast, Scannable & Secure</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
