@@ -8,15 +8,16 @@ from qrcode.constants import ERROR_CORRECT_H
 import os
 import re
 import time
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
 # Initialize FastAPI app
 app = FastAPI(title="VeggieVerify - Vegetable Details QR Generator")
 
-# Create necessary directories
+# Create necessary directories (Compatible with Vercel serverless read-only filesystem)
 BASE_DIR = Path(__file__).resolve().parent
-GENERATED_QR_DIR = BASE_DIR / "generated_qr"
+GENERATED_QR_DIR = Path(tempfile.gettempdir()) / "veggie_qr_codes"
 GENERATED_QR_DIR.mkdir(exist_ok=True)
 
 # Mount static files and templates
